@@ -1,5 +1,4 @@
 // Datos iniciales para los 12 computadores del laboratorio
-// PC 3, 5 y 10 inician en estado malo (según diseño wireframe)
 var computadores = [
     { id: 1, bueno: true, comentarios: ["Funciona a la perfección.", "Listo para clases de programación."] },
     { id: 2, bueno: true, comentarios: ["Todo bien con este equipo."] },
@@ -19,57 +18,53 @@ var computadores = [
 var nombresUsuarios = ["Juan Manuel", "Joaquín Pérez", "María Silva", "Camila Torres", "Lucas Gómez", "Sofía Rojas"];
 
 // ID del computador seleccionado actualmente
-var pcSeleccionadoId = 5; // Inicia con el PC 5 como en la imagen
+var pcSeleccionadoId = 5;
 
 // Inicialización al cargar la ventana
 window.onload = function () {
     renderizarMapa();
 
-    // Si actualizarDetallesPC no está definida en todas las páginas, puedes envolverla en un try/catch o un if
     if (typeof actualizarDetallesPC === "function") {
         actualizarDetallesPC();
     }
 };
 
-// Renderizar la grilla de computadores usando estrictamente getElementById
+// Renderizar la grilla de computadores
 function renderizarMapa() {
     var gridContainer = document.getElementById("pcGrid");
 
-    // Validar si el elemento existe antes de intentar acceder a sus propiedades
     if (gridContainer !== null) {
-        // Corregido: Se asigna un valor para limpiar el contenedor antes de renderizar
+        // Limpiar contenedor antes de renderizar
         gridContainer.innerHTML = "";
 
-        // Aquí puedes continuar con el resto de tu código para agregar los computadores...
+        // Bucle para iterar y crear cada estación de trabajo
+        for (var i = 0; i < computadores.length; i++) {
+            var pc = computadores[i];
+            var esSeleccionado = (pc.id === pcSeleccionadoId);
 
+            var pcElement = document.createElement("div");
+            pcElement.className = "pc-station" + (esSeleccionado ? " selected" : "");
+            pcElement.setAttribute("data-id", pc.id);
+            pcElement.onclick = createPCClickHandler(pc.id);
+
+            var badgeClass = pc.bueno ? "good" : "bad";
+            var badgeIcon = pc.bueno ? "fa-check" : "fa-xmark";
+
+            pcElement.innerHTML =
+                '<div class="station-screen">' +
+                '<i class="fa-solid fa-desktop"></i>' +
+                '<div class="status-indicator ' + badgeClass + '">' +
+                '<i class="fa-solid ' + badgeIcon + '"></i>' +
+                '</div>' +
+                '</div>' +
+                '<div class="chair"></div>' +
+                '<span class="pc-label">PC ' + pc.id + '</span>';
+
+            gridContainer.appendChild(pcElement);
+        }
     } else {
         console.warn("El elemento 'pcGrid' no se encontró en esta página.");
     }
-}
-
-for (var i = 0; i < computadores.length; i++) {
-    var pc = computadores[i];
-    var esSeleccionado = (pc.id === pcSeleccionadoId);
-
-    var pcElement = document.createElement("div");
-    pcElement.className = "pc-station" + (esSeleccionado ? " selected" : "");
-    pcElement.setAttribute("data-id", pc.id);
-    pcElement.onclick = createPCClickHandler(pc.id);
-
-    var badgeClass = pc.bueno ? "good" : "bad";
-    var badgeIcon = pc.bueno ? "fa-check" : "fa-xmark";
-
-    pcElement.innerHTML =
-        '<div class="station-screen">' +
-        '<i class="fa-solid fa-desktop"></i>' +
-        '<div class="status-indicator ' + badgeClass + '">' +
-        '<i class="fa-solid ' + badgeIcon + '"></i>' +
-        '</div>' +
-        '</div>' +
-        '<div class="chair"></div>' +
-        '<span class="pc-label">PC ' + pc.id + '</span>';
-
-    gridContainer.appendChild(pcElement);
 }
 
 // Manejador de clic para cada PC
@@ -124,7 +119,6 @@ function renderizarComentarios(pc) {
         return;
     }
 
-    // Asegurar un máximo de 3 comentarios más recientes
     var comentariosAMostrar = pc.comentarios.slice(-3);
 
     for (var i = comentariosAMostrar.length - 1; i >= 0; i--) {
@@ -193,16 +187,14 @@ function cambiarEstadoPC(id, nuevoEstadoBueno) {
         pc.bueno = nuevoEstadoBueno;
         if (!nuevoEstadoBueno) {
             pc.comentarios.push("El equipo fue reportado con problemas de funcionamiento.");
-            // Limitar a los 3 más recientes
-            if (pc.comentarios.length > 3) {
-                pc.comentarios = pc.comentarios.slice(-3);
-            }
         } else {
             pc.comentarios.push("El equipo ha sido reparado y se encuentra operativo.");
-            if (pc.comentarios.length > 3) {
-                pc.comentarios = pc.comentarios.slice(-3);
-            }
         }
+
+        if (pc.comentarios.length > 3) {
+            pc.comentarios = pc.comentarios.slice(-3);
+        }
+
         renderizarMapa();
         actualizarDetallesPC();
         cerrarModal();
@@ -234,10 +226,8 @@ function agregarComentario() {
 
     var pc = obtenerPC(pcSeleccionadoId);
     if (pc) {
-        // Agregar nuevo comentario
         pc.comentarios.push(texto);
 
-        // Mantener estrictamente solo los 3 más recientes
         if (pc.comentarios.length > 3) {
             pc.comentarios = pc.comentarios.slice(-3);
         }

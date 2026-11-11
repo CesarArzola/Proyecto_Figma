@@ -5,52 +5,55 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Cámara de Escáner</title>
 
-  <!-- Enlace a Google Fonts -->
+  <!-- Enlace a Google Fonts y FontAwesome -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@400..700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
   <link rel="stylesheet" href="../css/style.css">
 </head>
-<body>
+<body class="body_escaner">
 
   <div class="tarjeta_escaner">
-    <!-- Encabezado con botón a la izquierda y título centrado -->
+    <!-- Encabezado -->
     <header class="encabezado">
-            <a href="../../index.html" class="boton_escaner_uno" onclick="mostrarNotificacion('Volviendo al menú anterior...')">
-                <i class="fa-solid font-chevron-left">‹</i>
-            </a>
+      <a href="../../index.html" class="boton_escaner_uno" aria-label="Volver">
+        <i class="fa-solid fa-chevron-left"></i>
+      </a>
       <h1>Cámara de escáner</h1>
     </header>
 
-    <!-- Visor principal de la cámara -->
+    <!-- Visor principal -->
     <main class="visor_camara">
-      
-      <!-- ESPACIO RESERVADO PARA LA CÁMARA / LECTOR ESCÁNER -->
+      <!-- Fondo / Cámara -->
       <div id="contenedor_escaner" class="contenedor_escaner">
-        <!-- Reemplazar con la cámara (ej. <video id="webcam" autoplay></video>) -->
+        <!-- Espacio para <video> -->
       </div>
 
-      <!-- Cuadrícula 3x3 de superposición -->
+      <!-- Cuadrícula 3x3 hecha con Flexbox puro -->
       <div class="capa_cuadricula">
-        <div class="celda_cuadricula"></div>
-        <div class="celda_cuadricula"></div>
-        <div class="celda_cuadricula"></div>
-        
-        <div class="celda_cuadricula"></div>
-        <div class="celda_cuadricula">
-          <!-- Imagen del Código QR -->
-          <img src="../img/QR.png" alt="Código QR" class="imagen_qr">
+        <div class="fila_cuadricula">
+          <div class="celda_cuadricula"></div>
+          <div class="celda_cuadricula"></div>
+          <div class="celda_cuadricula sin-borde-derecho"></div>
         </div>
-        <div class="celda_cuadricula"></div>
-
-        <div class="celda_cuadricula"></div>
-        <div class="celda_cuadricula"></div>
-        <div class="celda_cuadricula"></div>
+        <div class="fila_cuadricula">
+          <div class="celda_cuadricula"></div>
+          <div class="celda_cuadricula">
+            <img src="../img/QR.png" alt="Código QR" class="imagen_qr">
+          </div>
+          <div class="celda_cuadricula sin-borde-derecho"></div>
+        </div>
+        <div class="fila_cuadricula sin-borde-abajo">
+          <div class="celda_cuadricula"></div>
+          <div class="celda_cuadricula"></div>
+          <div class="celda_cuadricula sin-borde-derecho"></div>
+        </div>
       </div>
     </main>
 
-    <!-- Menú inferior y botón -->
+    <!-- Pie de página -->
     <footer class="pie_pagina">
       <nav class="opciones_menu">
         <span class="boton_menu">Retrato</span>
@@ -59,7 +62,6 @@
         <span class="boton_menu">+</span>
       </nav>
 
-      <!-- Botón de escaneo -->
       <a href="/static/pages/mapa.html" class="boton_escaneo" aria-label="Escanear">
         <span class="contenedor_icono_escaneo">
           <img src="../img/icono.png" alt="Escanear" class="imagen_boton_escaneo">
