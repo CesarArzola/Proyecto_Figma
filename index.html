@@ -1,37 +1,60 @@
 <!DOCTYPE html>
 <html lang="es">
-
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Esta etiqueta es CRUCIAL para que en F12 (móvil) se adapte correctamente -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
     <meta name="author" content="César Arzola - Fernando Vazquez - Nayara Penez">
     <title>Proyecto Figma</title>
-
+    
+    <link href="https://fonts.googleapis.com/css2?family=Squada+One&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="static/css/style.css">
 </head>
-
 <body>
     <header>
-        <img src="static/img/Logo-negativo-removebg-preview 1.png" alt="logo">
-        <a href="static/pages/mapa.html">X</a>
+        <div class="cont-logo">
+            <!-- 1. AÑADIR IMAGEN: Logo del computador aquí -->
+            <img src="static/img/logo.png" alt="logo" class="placeholder">
+        </div>
+        <a href="static/pages/mapa.html" class="menu">
+            <!-- 2. AÑADIR IMAGEN: Icono del menú aquí -->
+            <img src="static/img/menu.png" alt="menu" class="placeholder">
+        </a>
     </header>
 
     <main>
-        <div>
-            <h1>Titulo</h1>
-        </div>
-        <div>
-            <div>
-                <h2>Bienvenido</h2>
+        <section class="seccion-blanca">
+            <h1 class="titulo-principal">Scan PC´s</h1>
+        </section>
+
+        <section class="seccion-morada">
+            <h2>Bienvenido</h2>
+            <p>Aqui podras averiguar si el dispositivo de tu<br>sala que quieres usar esta en buen estado o<br>debes buscar otro.</p>
+            
+            <h3 class="subtitulo-pasos">Sigue los pasos a continuación</h3>
+            <div class="contenedor-imagen-pasos">
+                <!-- 3. AÑADIR IMAGEN: Imagen de los celulares/pasos aquí -->
+                <img src="static/img/tutorial.png" alt="Pasos" class="placeholder">
             </div>
-            <div>
-                <p>Aqui podras averiguar si el dispositivo de tu sala
-                    que quieres usar esta en buen estado o debes buscar otro.</p>
+        </section>
+
+        <section class="seccion-blanca padding-extra">
+            <h3 class="texto-accion">¡Ahora abre tu camara y escanea<br>un codigo siguiendo los pasos!</h3>
+            
+            <div class="contenedor-boton-escanear">
+                <!-- 4. AÑADIR IMAGEN: Botón morado grande aquí -->
+                <!-- Se agregó la etiqueta <a> para redirigir a escaner.html -->
+                <a href="/static/pages/escaner.html">
+                    <img src="static/img/boton.png" alt="Escanear" class="placeholder">
+                </a>
             </div>
-        </div>
+        </section>
     </main>
+
+    <footer>
+        <p>Todos los derechos reservados.</p>
+    </footer>
 
     <script src="static/js/script.js"></script>
 </body>
-
 </html>

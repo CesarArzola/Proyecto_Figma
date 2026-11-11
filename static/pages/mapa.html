@@ -1,36 +1,95 @@
 <!DOCTYPE html>
 <html lang="es">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="author" content="César Arzola - Fernando Vazquez - Nayara Penez">
-    <title>Proyecto Figma</title>
-
-    <link rel="stylesheet" href="static/css/style.css">
+    <title>Información y Estado de Computadores</title>
+    <!-- FontAwesome para iconos -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="../css/style.css">
 </head>
-
 <body>
-    <header>
-        <img src="static/img/Logo-negativo-removebg-preview 1.png" alt="logo">
-        <a href="static/pages/mapa.html">X</a>
-    </header>
 
-    <main>
-        <div>
-            <h1>Titulo</h1>
-        </div>
-        <div>
-            <div>
-                <h2>Bienvenido</h2>
-            </div>
-            <div>
-                <p></p>
-            </div>
-        </div>
-    </main>
+    <div class="app-container">
+        <!-- Encabezado con Botón e Información -->
+        <header class="header">
+            <a href="../../index.html" class="btn-back" onclick="mostrarNotificacion('Volviendo al menú anterior...')">
+                <i class="fa-solid font-chevron-left">‹</i>
+            </a>
+            <h1 class="header-title">Información</h1>
+        </header>
 
-    <script src="static/js/script.js"></script>
+        <!-- Banner Dinámico de Estado -->
+        <section class="status-banner" id="statusBanner">
+            <div class="pc-icon-wrapper">
+                <i class="fa-solid fa-laptop pc-main-icon"></i>
+                <div class="pc-badge-icon bad" id="bannerBadge">
+                    <i class="fa-solid fa-xmark" id="bannerBadgeIcon"></i>
+                </div>
+            </div>
+            <div class="banner-text" id="bannerText">
+                Cargando estado del computador...
+            </div>
+        </section>
+
+        <!-- Sección Mapa de la Sala -->
+        <section class="map-section">
+            <h2 class="section-title">Mapa</h2>
+            <div class="map-card">
+                <div class="map-frame">
+                    <!-- Mobiliario adicional de referencia en la sala -->
+                    <div class="room-furniture">
+                        <div class="door-icon">
+                            <i class="fa-solid fa-door-open"></i>
+                        </div>
+                        <div class="teacher-desk">
+                            <i class="fa-solid fa-desktop"></i> Proyector
+                        </div>
+                        <div class="whiteboard"></div>
+                    </div>
+
+                    <!-- Contenedor Flex con flex-wrap para los 12 Equipos -->
+                    <div class="pc-grid-flex" id="pcGrid">
+                        <!-- Generado dinámicamente mediante JS sin querySelector -->
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Sección Formulario para Informar Problema -->
+        <section class="report-section">
+            <h2 class="section-title white">Informa tu problema</h2>
+            <div class="input-group">
+                <input type="text" id="inputProblem" class="problem-input" placeholder="Escribe el estado o problema..." onkeypress="handleKeyPress(event)">
+                <button class="btn-send" onclick="agregarComentario()">
+                    <i class="fa-solid fa-arrow-right"></i>
+                </button>
+            </div>
+        </section>
+
+        <!-- Sección de Comentarios Guardados -->
+        <section class="comments-section">
+            <h2 class="section-title">Comentarios sobre este dispositivo</h2>
+            <div class="comments-flex-container" id="commentsContainer">
+                <!-- Se mostrarán máximo los 3 comentarios más recientes -->
+            </div>
+        </section>
+    </div>
+
+    <!-- Modal Interactivo para Equipos -->
+    <div class="modal-overlay" id="modalOverlay">
+        <div class="modal-card">
+            <h3 class="modal-title" id="modalTitle">Opciones del Equipo</h3>
+            <p class="modal-desc" id="modalDesc">¿Qué deseas realizar con este dispositivo?</p>
+            <div class="modal-buttons" id="modalButtons">
+                <!-- Botones inyectados según el estado del PC -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Notificación Toast -->
+    <div class="toast-notification" id="toast">Acción completada</div>
+
+    <script src="../js/script.js" defer></script>
 </body>
-
 </html>

@@ -1,36 +1,72 @@
 <!DOCTYPE html>
 <html lang="es">
-
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="author" content="César Arzola - Fernando Vazquez - Nayara Penez">
-    <title>Proyecto Figma</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cámara de Escáner</title>
 
-    <link rel="stylesheet" href="static/css/style.css">
+  <!-- Enlace a Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@400..700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="../css/style.css">
 </head>
-
 <body>
-    <header>
-        <img src="static/img/Logo-negativo-removebg-preview 1.png" alt="logo">
-        <a href="static/pages/mapa.html">X</a>
+
+  <div class="tarjeta_escaner">
+    <!-- Encabezado con botón a la izquierda y título centrado -->
+    <header class="encabezado">
+            <a href="../../index.html" class="boton_escaner_uno" onclick="mostrarNotificacion('Volviendo al menú anterior...')">
+                <i class="fa-solid font-chevron-left">‹</i>
+            </a>
+      <h1>Cámara de escáner</h1>
     </header>
 
-    <main>
-        <div>
-            <h1>Titulo</h1>
+    <!-- Visor principal de la cámara -->
+    <main class="visor_camara">
+      
+      <!-- ESPACIO RESERVADO PARA LA CÁMARA / LECTOR ESCÁNER -->
+      <div id="contenedor_escaner" class="contenedor_escaner">
+        <!-- Reemplazar con la cámara (ej. <video id="webcam" autoplay></video>) -->
+      </div>
+
+      <!-- Cuadrícula 3x3 de superposición -->
+      <div class="capa_cuadricula">
+        <div class="celda_cuadricula"></div>
+        <div class="celda_cuadricula"></div>
+        <div class="celda_cuadricula"></div>
+        
+        <div class="celda_cuadricula"></div>
+        <div class="celda_cuadricula">
+          <!-- Imagen del Código QR -->
+          <img src="../img/QR.png" alt="Código QR" class="imagen_qr">
         </div>
-        <div>
-            <div>
-                <h2>Bienvenido</h2>
-            </div>
-            <div>
-                <p></p>
-            </div>
-        </div>
+        <div class="celda_cuadricula"></div>
+
+        <div class="celda_cuadricula"></div>
+        <div class="celda_cuadricula"></div>
+        <div class="celda_cuadricula"></div>
+      </div>
     </main>
 
-    <script src="static/js/script.js"></script>
-</body>
+    <!-- Menú inferior y botón -->
+    <footer class="pie_pagina">
+      <nav class="opciones_menu">
+        <span class="boton_menu">Retrato</span>
+        <span class="boton_menu">Imagen</span>
+        <span class="boton_menu">Video</span>
+        <span class="boton_menu">+</span>
+      </nav>
 
+      <!-- Botón de escaneo -->
+      <a href="/static/pages/mapa.html" class="boton_escaneo" aria-label="Escanear">
+        <span class="contenedor_icono_escaneo">
+          <img src="../img/icono.png" alt="Escanear" class="imagen_boton_escaneo">
+        </span>
+      </a>
+    </footer>
+  </div>
+
+</body>
 </html>
